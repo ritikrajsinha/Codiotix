@@ -1,0 +1,44 @@
+.footer-list{
+    list-style-type:none;
+    padding:0;
+  }
+  .footer-list-items a{
+    text-decoration:none;
+    color:white !important;
+  }
+  .footer-heading{
+    font-family: 'Pattaya', sans-serif !important;
+    font-size:3rem;
+  }
+  
+  .footer-design{
+    display:flex;
+    justify-content:space-around;
+  }
+  .footer-para{
+    border-bottom:solid;
+    padding-bottom:3px;
+    width:fit-content;
+    border-bottom-color: red;
+  }
+  @media only screen and (max-width: 991.5px){
+    .footer-design{
+        display:flex;
+        flex-direction:column;
+      }
+      .footer-list{
+        margin-top:2rem;
+      }
+      .footer-list-items{
+        margin-top:1.5rem !important;
+      }
+  }
+  .icon{
+    color:white !important;
+  }
+  .main-list-item{
+  border-bottom:solid;
+  padding-bottom:3px;
+  width:fit-content;
+  border-bottom-color: red;
+}

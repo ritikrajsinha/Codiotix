@@ -1,0 +1,149 @@
+.margin{
+    margin-top:8rem;
+}
+.top-heading{
+    font-size:4.8rem;
+    font-family: 'Pattaya', sans-serif !important;
+}
+.header-button{
+    padding:1rem 2rem!important;
+    border:2px solid white !important;
+    font-weight: bold !important;
+    font-family: 'Roboto', sans-serif;
+    background:#358597;
+    font-size:1.8rem !important;
+}
+.header-button:hover{
+    color:#358597 !important;
+    background:white;
+}
+.indicator{
+    height:auto !important;
+    width: auto !important;
+    border:2px solid white;
+    padding: 8px 8px;
+    border-radius:50%;
+}
+.indicator:hover {
+    border:2px solid white;
+    background:white;
+}
+.indicator:hover .indicator-1{
+    color:#358597 !important;
+}
+ .indicator-1{
+    color:white !important;
+ }
+ .scroll-down{
+     display:flex;
+     align-items:center;
+     justify-content:center;
+ }
+@media only screen and (max-width: 991.5px){
+    .header-design{
+        display:flex;
+        flex-direction:column-reverse;
+        align-items:center;
+    }
+    .text-column{
+     text-align:center;
+    }
+    .header-image{
+        height:fit-content !important;
+        max-width:100% !important;
+        width:auto !important;
+    }
+   .image-column{
+       display:flex;
+       justify-content:center;
+   }
+
+.top-heading{
+    font-size:5rem;
+}
+.avatar-section{
+   display: flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+} 
+}
+@media only screen and (max-width: 767.5px){
+    .top-heading{
+        font-size:3.6rem;
+    }  
+}
+@media only screen and (max-width: 574.5px){
+    .top-heading{
+        font-size:3.8rem;
+    }
+    .margin{
+        margin-top:5rem;
+    }  
+    .width{
+        max-width:100% !important;
+    }
+}
+@media only screen and (max-width: 461.5px){
+    .top-heading{
+        font-size:3rem;
+    }
+    .profile{
+        height:5vh !important;
+        max-width:10% !important;
+        border:2px solid white;
+    }  
+}
+.avatar{
+    height:30vh;
+    max-width:50%;
+}
+
+.avatar-section{
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    align-items:center !important;
+}
+#about-section , .chat-section , #map-section{
+    font-family: 'Roboto', sans-serif;  
+}
+.avatar-heading{
+    font-weight: bold !important;
+}
+.chat-section{
+    background-color:#974735;
+}
+.individual-chat{
+    display:flex !important;
+    align-items:center !important;
+    border:2px solid white !important;
+    border-radius:4px;
+}
+.profile{
+    height:8vh !important;
+    max-width:15% !important;
+    border:2px solid white;
+    border-radius:50%;
+}
+@media only screen and (max-width: 580px){
+   .individual-chat{
+    border:4px solid white;
+   }
+}
+#map-section{
+    display:flex;
+    justify-content:center;
+}
+#map-section a{
+    border:2px solid #358597;
+    padding:2rem;
+    border-radius:4px;
+    text-decoration:none;
+    font-weight: bold;
+    color:#358597;
+    font-size:2rem;
+}
+#map-section a:hover{
+    color:white;
+    background:#358597;
+}

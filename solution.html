@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--bootstrap cdn-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!--styling css-->
+    <link rel="stylesheet" href="solution.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="footer.css">
+    <!--google font-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pattaya&display=swap" rel="stylesheet">
+       <style>
+       .gLines{
+        font-family: 'Bree Serif', serif;
+        color:white;
+       } 
+       .Gcol{
+           border:2px solid #a86759;
+           box-shadow:5px 10px #a86759;
+           display:none;
+       } 
+      .indication{
+          border-bottom:3px solid;
+          width:fit-content;
+          padding:3px;
+          border-bottom-color:red;
+       }
+    </style>
+</head>
+
+<body>
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top p-3 mb-5">
+        <div class="container my-nav">
+          <a class="navbar-brand logo" href="index.html">
+            <img src="coronavirus.png" class="codiotix-logo">
+          </a>
+          <a class="navbar-brand our-nav text" href="index.html"><b>The Codiotix</b></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#codiotix-collapse"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="span-color"></div>
+            <div class="span-color mt-1"></div>
+            <div class="span-color mt-1"></div>
+          </button>
+          <div class="collapse navbar-collapse" id="codiotix-collapse">
+            <ul class="navbar-nav mx-auto nav-list">
+              <li class="nav-item">
+                <a class="nav-link px-5 text" aria-current="page" href="index.html"><b>HOME</b></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link px-5 text" href="teams.html"><b>TEAM</b></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link px-5 text" href="solution.html"><b>PREDICTOR</b></a>
+              </li>
+    
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="mx-auto" id="validity"></div>
+    <div class="container margin">
+        <h1 class="display-3 text-center heading" style="color:#358597;">Co-wave Predictor</h1>
+        <select class="select my-5" aria-label="Default State" id="droplist">
+            <option value="AN" selected>Andaman & Nicobar Islands</option>
+            <option value="AP">Andhra Pradesh</option>
+            <option value="AR">Arunachal Pradesh</option>
+            <option value="AS">Assam </option>
+            <option value="BR">Bihar</option>
+            <option value="CH">Chandigarh</option>
+            <option value="CT">Chhattisgarh</option>
+            <option value="DL">Delhi</option>
+            <option value="DN">Dadar and nagar haveli</option>
+            <option value="GA">Goa</option>
+            <option value="GJ">Gujarat</option>
+            <option value="HP">Himachal Pradesh</option>
+            <option value="HR">Haryana</option>
+            <option value="JH">Jharkhand</option>
+            <option value="JK">Jammu and kashmir</option>
+            <option value="KA">Karnatka</option>
+            <option value="KL">Kerela</option>
+            <option value="LA">Ladakh</option>
+            <option value="LD">Lakshadweep</option>
+            <option value="MH">Maharashtra</option>
+            <option value="ML">Meghalaya</option>
+            <option value="MN">Manipur</option>
+            <option value="MP">Madhya Pradesh</option>
+            <option value="MZ">Mizoram</option>
+            <option value="NL">Nagaland</option>
+            <option value="OR">Orissa</option>
+            <option value="PB">Punjab </option>
+            <option value="PY">Poducherry</option>
+            <option value="RJ">Rajasthan</option>
+            <option value="SK">Sikkim</option>
+            <option value="TG">Telangana</option>
+            <option value="TN">Tamilnadu</option>
+            <option value="TR">Tripura</option>
+            <option value="TT">Total India</option>
+            <option value="UP">Uttar Pradesh</option>
+            <option value="UT">Uttarakhand</option>
+            <option value="WB">West Bengal</option>
+        </select>
+
+        <button type="button" onclick="myFunction()" id="button-design">Click </button>
+
+
+        <p class="lead my-4 pp indication" style = "color:#358597;">Population </p><span id="pop" class="displayData"></span>
+        <p class="lead my-4 pp indication" style = "color:#358597;">Positivity Rate (in %)</p><span id="PosRate" class="displayData"></span>
+        <p class="lead my-4 pp indication" style = "color:#358597;">Partial Vaccination rate (in %)</p><span id="VacPer" class="displayData"></span>
+        <p class="lead my-4 pp indication" style = "color:#358597;">Total Vaccination rate (in %)</p><span id="Vac" class="displayData"></span>
+        <p class="lead my-4 pp indication" style = "color:#358597;">Graph Prediction</p><span id="Graph" class="displayData"></span>
+        <p class="lead my-4 pp indication" style = "color:#358597;">Chances of next Covid wave (in %)</p><span id="Chances" class="displayData"></span>
+        <p class="lead my-4 pp indication" style = "color:#358597;">Lockdown Prediction</p><span id="Lockdown" class="displayData"></span>
+      </div>
+    <!--guidlines regarding lockdown-->
+     <div class="container p-4 my-5 gLines">
+          <div class="row g-5">
+              <div class="col-lg-5 col-12 p-3 Gcol mx-auto" id="column1" style="background:#974735;">
+          <h3 class="h3 text-center"><u>Complete Lockdown Guidelines</u></h3>
+          <p class="mt-2">1.Complete lockdown rules according to WHO protocols and the suitability of the region.</p>
+          <p class="mt-2">2.Increase the speed of Vaccination programs</p>
+          <p class="mt-2">3.Strict Covid-19 Precautions for the ones who are exempted from lockdown</p>
+          <p class="mt-2">4.Making proper arrangements of Covid Beds & necessary needs</p>
+        </div>
+        <div class="col-lg-5 col-12 p-3 Gcol mx-auto" id="column2" style="background:#974735;">
+            <h3 class="h3 text-center"><u>Partial Lockdown Guidelines</u></h3>
+            <p class="mt-2">1.Partial lockdown rules according to WHO protocols and the suitability of the region.</p>
+            <p class="mt-2">2.Strict isolation of red zones (regional Covid-19 hotspots)</p>
+            <p class="mt-2">3.Strict Covid-19 Precautions for the ones who are exempted from lockdown</p>
+            <p class="mt-2">4.Making proper arrangements of Covid Beds & necessary needs</p>
+          </div>
+          <div class="col-lg-5 col-12 p-3 mx-auto Gcol" id="column3" style="background:#974735;">
+            <h3 class="h3 text-center"><u>No Lockdown Guidelines</u></h3>
+            <p class="mt-2">1.Strict Covid-19 Precations for all the masses till complete containment of the Virus</p>
+            <p class="mt-2">2.Strict isolation of red zones (regional Covid-19 hotspots)</p>
+            <p class="mt-2">3.No reopening of schools till complete containment.</p>
+            <p class="mt-2">4.Speed up the vaccination to avoid the next wave.</p>
+          </div>
+          </div>
+      </div>
+        <!--footer-->
+        <footer class="mt-5 text-white p-3" style="background:#358597;">
+            <div class="container footer-design my-5">
+              <h1 class="footer-heading">The Codiotix</h1>
+              <ul class="footer-list">
+                <li class="main-list-item"><b>Company</b></li>
+                <li class="footer-list-items mt-lg-2 mt-2 text-muted"><a href="index.html">Home</a></li>
+                <li class="footer-list-items mt-lg-2 mt-2 text-muted"><a href="teams.html">Team</a></li>
+                <li class="footer-list-items mt-lg-2 mt-2 text-muted"><a href="solution.html">Predictor</a></li>
+              </ul>
+              <div class="social-media">
+                <p class="mt-lg-0 mt-2 footer-para">Follow us</p>
+                <!--facebook-->
+                <a href="https://www.facebook.com/vaibhav.choudhary.547389" target="_blank"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-facebook pl-2 icon mx-1 mt-lg-0 mt-2" viewBox="0 0 16 16">
+                    <path
+                      d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                  </svg></a>
+                <!--instagram-->
+                <a href="https://www.instagram.com/choudhary._.vaibhav?r=nametag" target="_blank"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-instagram pl-2 icon mx-1 mt-lg-0 mt-2" viewBox="0 0 16 16">
+                    <path
+                      d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                  </svg></a>
+                <!--linked in-->
+                <a href="https://www.linkedin.com/in/vaibhav-choudhary-054907202/" target="_blank"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-linkedin pl-2 icon mx-1 mt-lg-0 mt-2" viewBox="0 0 16 16">
+                    <path
+                      d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
+                  </svg></a>
+              </div>
+            </div>
+          </footer>
+
+        <script>
+            function myFunction() {
+                var state = document.getElementById("droplist").value;
+
+                var timeline, pop, Percent, WeekAv = [], ConAv, TesAv, PosRate, VacPer, flag, lock ,Vac;
+
+
+
+                fetch('https://api.covid19india.org/v4/min/timeseries.min.json')
+                    .then((response) => {
+                        return response.json();
+                    })
+                    .then(data => {
+
+                        let date = new Date();
+                        date = '2021-06-05';
+                        // state=window.prompt("Enter the state code:");
+                        timeline;
+                        pop;
+                        Percent = 0;
+
+
+
+                        switch (state) {
+                            case 'AN':
+                                timeline = data.AN.dates;  //Andaman & Nicobar Islands
+                                pop = 401000;  // population
+                                break;
+
+                            case 'AP':
+                                timeline = data.AP.dates;    //Andhra Pradesh
+                                pop = 91717240;                     // population
+                                break;
+
+                            case 'AR':
+                                timeline = data.AR.dates;       //Arunachal Pradesh
+                                pop = 1711895;                         // population
+                                break;
+
+                            case 'AS':                         //Assam 
+                                timeline = data.AS.dates;
+                                pop = 36547715;                  //population
+                                break;
+
+                            case 'BR':
+                                timeline = data.BR.dates;        //Bihar
+                                pop = 124799926;                 //population
+                                break;
+
+                            case 'CH':                          //Chandigarh
+                                timeline = data.CH.dates;
+                                pop = 1148000;                    //population
+                                break;
+
+                            case 'CT':
+                                timeline = data.CT.dates;         //Chhattisgarh
+                                pop = 23598860;                    //population
+                                break;
+
+                            case 'DL':                        //Delhi
+                                timeline = data.DL.dates;
+                                pop = 31181000;                //population
+                                break;
+
+                            case 'DN':                       //Dadar and nagar haveli
+                                timeline = data.DN.dates;
+                                pop = 465999;                  //population
+                                break;
+
+                            case 'GA':                       //Goa
+                                timeline = data.GA.dates;
+                                pop = 1528378;                  //population
+                                break;
+
+                            case 'GJ':
+                                timeline = data.GJ.dates;       //Gujrat
+                                pop = 71536564;                   //population
+                                break;
+
+                            case 'HP':                        //Himachal Pradesh
+                                timeline = data.HP.dates;
+                                pop = 7570713;                 //population
+                                break;
+
+                            case 'HR':                       //Harayana
+                                timeline = data.HR.dates;
+                                pop = 29254745;                //population
+                                break;
+
+                            case 'JH':
+                                timeline = data.JH.dates;     //Jharkhand
+                                pop = 38593984;                //population
+                                break;
+
+                            case 'JK':                      //Jammu and kashmir
+                                timeline = data.JK.dates;
+                                pop = 15224150;               //population
+                                break;
+
+                            case 'KA':                      //Karnatka
+                                timeline = data.KA.dates;
+                                pop = 69586993;              //population
+                                break;
+
+                            case 'KL':                     //Kerala
+                                timeline = data.KL.dates;
+                                pop = 34678294;              //population
+                                break;
+
+                            case 'LA':                     //Ladakh
+                                timeline = data.LA.dates;
+                                pop = 274289;                //population
+                                break;
+
+                            case 'LD':
+                                timeline = data.LD.dates;    //Lakshadweep
+                                pop = 64429;                  //population
+                                break;
+
+                            case 'MH':                      //Maharashtra
+                                timeline = data.MH.dates;
+                                pop = 126189673;              //population
+                                break;
+
+                            case 'ML':                      //Meghalaya
+                                timeline = data.ML.dates;
+                                pop = 3864569;               //population
+                                break;
+
+                            case 'MN':                      //Manipur
+                                timeline = data.MN.dates;
+                                pop = 2855794;                   //population
+                                break;
+
+                            case 'MP':                    //Madhya pradesh
+                                timeline = data.MP.dates;
+                                pop = 86406401;            //population
+                                break;
+
+                            case 'MZ':                          //Mizoram
+                                timeline = data.MZ.dates;
+                                pop = 1308571;               //population
+                                break;
+
+                            case 'NL':                          //Nagaland
+                                timeline = data.NL.dates;
+                                pop = 2083000;                        //population
+                                break;
+
+                            case 'OR':                  //Orissa
+                                timeline = data.OR.dates;
+                                pop = 47098218;                //population
+                                break;
+
+                            case 'PB':                     //Punjab                 
+                                timeline = data.PB.dates;
+                                pop = 30451858;               //population
+                                break;
+
+                            case 'PY':                         //Puducherry
+                                timeline = data.PY.dates;
+                                pop = 856000;
+                                break;
+
+                            case 'RJ':                     //Rajasthan
+                                timeline = data.RJ.dates;
+                                pop = 68548437;               //population
+                                break;
+
+                            case 'SK':                       //Sikkim
+                                timeline = data.SK.dates;
+                                pop = 657867;                      //population
+                                break;
+
+                            case 'TG':                       //Telangana
+                                timeline = data.TG.dates;
+                                pop = 38510982;                //population
+                                break;
+
+                            case 'TN':                       //Tamil Nadu
+                                timeline = data.TN.dates;
+                                pop = 72147030;                //population
+                                break;
+
+                            case 'TR':                        //Tripura
+                                timeline = data.TR.dates;
+                                pop = 3673917;                  //population    
+                                break;
+
+                            case 'TT':                      // total India
+                                timeline = data.TT.dates;
+                                pop = 1366400000             //population
+                                break;
+
+                            // case 'UN'://state doesnot exist
+                            //   timeline=data.UN.dates;
+                            // break;
+
+                            case 'UP':                         //Uttar Pradesh
+                                timeline = data.UP.dates;
+                                pop = 234969561;                 //population
+                                break;
+
+                            case 'UT':                          //Uttrakhand
+                                timeline = data.UT.dates;
+                                pop = 10116752;                   //population
+                                break;
+
+                            case 'WB':                           //West Bengal
+                                timeline = data.WB.dates;
+                                pop = 99609303;                    //population 
+                                break;
+
+                        }
+
+                        // console.log("Confirmed: ",timeline);
+                        //console.log("Population:", pop);
+
+
+                        // WeekAv= [];
+                        ConAv = timeline[date].delta7.confirmed;
+                        TesAv = timeline[date].delta7.tested;
+
+                        PosRate = (ConAv / TesAv) * 100; //Positivity Rate
+                        //console.log("Positivity Rate:",PosRate); 
+
+                        if (PosRate >= 0 && PosRate < 3) {
+                            Percent += 5;
+                        } else if (PosRate >= 3 && PosRate < 5) {
+                            Percent += 10;
+                        } else if (PosRate >= 5 && PosRate < 15) {
+                            Percent += 15;
+                        } else {
+                            Percent += 20;
+                             window.alert("Increase Testing!");
+                        }
+
+                        VacPer = (timeline[date].total.vaccinated1/ pop) * 100;
+                        Vac = (timeline[date].total.vaccinated2 / pop) * 100;
+                        console.log("Vaccination Percent:",VacPer);
+                        console.log("Total Vaccination:",Vac);
+
+                        if (VacPer < 10) {
+                            Percent += 45;
+                        } else if (VacPer >= 10 && VacPer < 30) {
+                            Percent += 35;
+                        } else if (VacPer >= 30 && VacPer < 45) {
+                            Percent += 25;
+                        } else if (VacPer >= 45 && VacPer < 70) {
+                            Percent += 10;
+                        } else {
+                            Percent += 3;
+                        }
+
+
+                        WeekAv[0] = timeline[date].delta7.confirmed;
+                        // console.log("test:", WeekAv[0]);
+                        date = '2021-05-29';
+
+                        WeekAv[1] = timeline[date].delta7.confirmed;
+                        date = '2021-05-22';
+
+                        WeekAv[2] = timeline[date].delta7.confirmed;
+                        date = '2021-05-15';
+
+                        WeekAv[3] = timeline[date].delta7.confirmed;
+
+                        // for(var i=0; i<4; i++)
+                        {
+                            //   console.log("\n", WeekAv[i]);
+
+                        }
+
+                        flag = 0;
+
+
+
+
+                        if (WeekAv[2] < WeekAv[3]) {
+                            if (WeekAv[1] < WeekAv[2]) {
+                                if (WeekAv[0] < WeekAv[1]) {
+                                    flag = 0; console.log("alert!");
+                                } else {
+                                    flag = 1; console.log("alert!");
+                                }
+                            } else {
+                                if (WeekAv[0] < WeekAv[1]) {
+                                    flag = 0; console.log("alert!");
+                                } else {
+                                    flag = 2; console.log("alert!");
+                                }
+                            }
+                        } else {
+                            if (WeekAv[1] < WeekAv[2]) {
+                                if (WeekAv[0] < WeekAv[1]) {
+                                    flag = 0; console.log("alert!");
+                                } else {
+                                    flag = 1; console.log("alert!");
+                                }
+                            } else {
+                                if (WeekAv[0] < WeekAv[1]) {
+                                    flag = 1; console.log("alert!");
+                                } else {
+                                    flag = 2; console.log("alert!");
+                                }
+                            }
+                        }
+
+                        // let popul="Population";
+                        // document.getElementById("demo").innerHTML=popul;
+                        document.getElementById("pop").innerHTML = pop;
+
+                        document.getElementById("PosRate").innerHTML = PosRate;
+
+                        document.getElementById("VacPer").innerHTML = VacPer;
+
+                        document.getElementById("Vac").innerHTML = Vac;
+
+
+
+                        switch (flag) {
+                            case 0: console.log("\nCovid-19 Graph Prediction:Decrease!");
+                                document.getElementById("Graph").innerHTML = "Decrease!"; 
+                                Percent += 5;
+                                break;
+
+                            case 1: console.log("\nCovid-19 Graph Prediction:Stable!");
+                                document.getElementById("Graph").innerHTML = "Stable!";
+                                Percent += 15;
+                                break;
+
+                            case 2: console.log("\nCovid-19 Graph Prediction:Increase!");
+                                document.getElementById("Graph").innerHTML = "Increase!";
+                                Percent += 27;
+                                break;
+                        }
+
+                       // console.log("Chances of Next Covid-19 wave:", Percent, "%");
+                       document.getElementById("Chances").innerHTML = Percent;
+
+                        Lock = 0;
+
+                        if (PosRate >= 15 && VacPer < 10) {
+                            lock = 2;
+                        } else if (Percent >= 75 && flag == 2) {
+                            lock = 2;
+                        } else if (PosRate >= 15 && VacPer >= 10 && VacPer < 33) {
+                            lock = 1;
+                        } else if (PosRate >= 15 && VacPer < 45 && flag == 2) {
+                            lock = 1;
+                        } else if (PosRate >= 5 && PosRate < 15) {
+                            if (flag == 1 || flag == 2) {
+                                if (VacPer < 10) {
+                                    lock = 2;
+                                } else if (VacPer >= 10 && VacPer < 33) {
+                                    lock = 1;
+                                } else {
+                                    lock = 0;
+                                }
+                            } else {
+                                lock = 0;
+                            }
+
+                        } else if (PosRate < 5 && flag == 2 && VacPer < 33) {
+                            lock = 1;
+                        } else {
+                            lock = 0;
+                        }
+
+
+                        if (lock == 0) {
+                            //console.log("No Lockdown!");
+                            document.getElementById("Lockdown").innerHTML = "No Lockdown!";
+                               document.getElementById("column1").style.display = 'none';
+                               document.getElementById("column2").style.display = 'none';
+                               document.getElementById("column3").style.display = 'block';
+                        } else if (lock == 1) {
+                           // console.log("Partial Lockdown!");
+                            document.getElementById("Lockdown").innerHTML = "Partial Lockdown!";
+                              document.getElementById("column1").style.display = 'none';
+                              document.getElementById("column2").style.display = 'block';
+                              document.getElementById("column3").style.display = 'none';
+                        } else if (lock == 2) {
+                            //console.log("Complete Lockdown!");
+                            document.getElementById("Lockdown").innerHTML = "Complete Lockdown!";
+                              document.getElementById("column1").style.display = 'block';
+                              document.getElementById("column2").style.display = 'none';
+                              document.getElementById("column3").style.display = 'none';
+                        } else {
+                            //console.log("Error!");
+                            document.getElementById("Lockdown").innerHTML = "Error!";
+                        }
+
+
+
+
+
+
+
+                    })
+
+                    .catch();
+
+
+
+  
+
+
+            }
+        </script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+     crossorigin="anonymous"></script>
+</body>
+
+</html>

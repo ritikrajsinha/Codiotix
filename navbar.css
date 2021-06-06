@@ -1,0 +1,53 @@
+nav{
+    background:#358597;
+  }
+  .nav-item{
+    font-family: 'Bree Serif', serif;
+  }
+.our-nav  {
+    font-family: 'Pattaya', sans-serif !important;
+    font-size:2rem !important;
+    margin-left:auto !important;
+    margin-right:auto !important;
+  }
+  .text{
+    color:white !important;
+  }
+  .fas{
+    color:#ffffff !important;
+  }
+  .logo{
+    display:none !important;
+  }
+  .codiotix-logo{
+    height:5.5vh !important;
+    width:5.5vh !important;
+  }
+  .span-color{
+    background-color:white !important;
+    height:0.8vh !important;
+    width:2rem !important;
+    border:0px solid white !important;
+    border-radius:30%;
+  }
+  .navbar-toggler{
+    border:3px solid white !important;
+    padding:3px !important;
+  }
+  @media only screen and (max-width: 991.5px){
+    /*navbar designing*/
+    .our-nav{
+     font-size:1.5rem !important;
+    }
+    .nav-list{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+      .navbar-toggler{
+        margin-right:0.1rem !important;
+       }
+       .logo{
+        display:inline-block !important;
+      } 
+}
